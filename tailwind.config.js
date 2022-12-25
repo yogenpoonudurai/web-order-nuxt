@@ -13,6 +13,21 @@ module.exports = {
   },
   plugins: [require("daisyui")],
   daisyui: {
-    themes: ["lemonade"],
+    themes: [
+      {
+        mytheme: {
+          primary: "#be123c",
+          secondary: "#ec4899",
+          accent: "#fda4af",
+          neutral: "#191A3E",
+          "base-100": "#FFFFFF",
+          info: "#7dd3fc",
+          success: "#a3e635",
+          warning: "#fde047",
+          error: "#ef4444",
+        },
+      },
+      "lemonade",
+    ],
   },
 };
