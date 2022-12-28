@@ -26,13 +26,10 @@
             <NuxtLink href="/">Home</NuxtLink>
           </li>
           <li class="hover:text-primary">
-            <NuxtLink href="/about">About Us</NuxtLink>
+            <NuxtLink href="/products">Products</NuxtLink>
           </li>
           <li class="hover:text-primary">
-            <NuxtLink href="/services">Services</NuxtLink>
-          </li>
-          <li class="hover:text-primary">
-            <NuxtLink href="/company">Our Company</NuxtLink>
+            <NuxtLink href="/login">Login</NuxtLink>
           </li>
         </ul>
       </div>
@@ -49,13 +46,10 @@
           <NuxtLink href="/">Home</NuxtLink>
         </li>
         <li class="hover:text-primary">
-          <NuxtLink href="/about">About Us</NuxtLink>
+          <NuxtLink href="/products">Products</NuxtLink>
         </li>
         <li class="hover:text-primary">
-          <NuxtLink href="/services">Services</NuxtLink>
-        </li>
-        <li class="hover:text-primary">
-          <NuxtLink href="/company">Our Company</NuxtLink>
+          <NuxtLink href="/login">Login</NuxtLink>
         </li>
       </ul>
     </div>

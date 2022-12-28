@@ -189,6 +189,7 @@ const promos: Promo[] = [
 
 const products: Product[] = [
   {
+    id: "0",
     imageSrc: "/images/home/product-1.png",
     name: "Summer Veganie",
     price: 29.0,
@@ -196,18 +197,21 @@ const products: Product[] = [
     stars: 5,
   },
   {
+    id: "1",
     imageSrc: "/images/home/product-2.png",
     name: "Geanie Seafood",
     price: 19.0,
     stars: 4,
   },
   {
+    id: "2",
     imageSrc: "/images/home/product-3.png",
     name: "Fresh Vegetable",
     price: 39.0,
     stars: 3,
   },
   {
+    id: "3",
     imageSrc: "/images/home/product-4.png",
     name: "Fresh Meatyus",
     price: 109.0,

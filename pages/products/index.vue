@@ -1,3 +1,3 @@
 <template>
-  <div>Services</div>
+  <h1>Products</h1>
 </template>
