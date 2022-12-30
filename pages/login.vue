@@ -1,13 +1,17 @@
 <template>
   <NuxtLayout name="bare">
-    <div class="hero min-h-screen flex flex-col-reverse lg:flex-row">
+    <div class="hero min-h-screen flex flex-col lg:flex-row">
       <div
-        class="text-center px-10 bg-primary lg:w-1/2 h-full min-h-screen flex flex-col justify-center text-white"
+        class="text-center px-10 bg-primary w-full lg:w-1/2 lg:h-full lg:min-h-screen flex flex-col justify-center text-white"
       >
-        <img src="/images/login.svg" class="max-w-sm mx-auto" alt="login" />
+        <img
+          src="/images/login.svg"
+          class="lg:w-1/2 h-full mx-auto"
+          alt="login"
+        />
         <p class="p-6">Let's get you back in!</p>
       </div>
-      <div class="lg:w-1/2 px-10 py-10">
+      <div class="lg:w-1/2 w-full px-10 py-10">
         <div class="mb-4 max-w-md mx-auto">
           <h1 class="text-3xl font-bold mb-4">Welcome back!</h1>
         </div>
