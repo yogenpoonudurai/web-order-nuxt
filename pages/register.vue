@@ -12,38 +12,41 @@
           <h1 class="text-3xl font-bold">Let's get you started.</h1>
           <p>Start purchasing our beautiful products.</p>
         </div>
-        <div
-          class="card flex-shrink-0 lg:max-w-md mx-auto shadow-2xl bg-base-100"
-        >
-          <div class="card-body">
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">Email</span>
-              </label>
-              <input
-                type="text"
-                placeholder="email"
-                class="input input-bordered"
-              />
+        <div class="card flex-shrink-0 mx-auto shadow-2xl bg-base-100 max-w-md">
+          <form @submit.prevent="handleRegister">
+            <div class="card-body">
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Email</span>
+                </label>
+                <input
+                  v-model="email"
+                  type="text"
+                  placeholder="email"
+                  class="input input-bordered"
+                />
+              </div>
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Password</span>
+                </label>
+                <input
+                  v-model="password"
+                  type="text"
+                  placeholder="password"
+                  class="input input-bordered"
+                />
+              </div>
+              <NuxtLink href="/login">
+                <span>Already have an account? </span>
+                <span class="text-center hover:text-primary link">Login</span>
+              </NuxtLink>
+              <div class="badge badge-error" v-if="error">{{ error }}</div>
+              <div class="form-control mt-6">
+                <button class="btn btn-primary">Register</button>
+              </div>
             </div>
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">Password</span>
-              </label>
-              <input
-                type="text"
-                placeholder="password"
-                class="input input-bordered"
-              />
-            </div>
-            <NuxtLink href="/login">
-              <span>Already have an account? </span>
-              <span class="text-center hover:text-primary link">Login</span>
-            </NuxtLink>
-            <div class="form-control mt-6">
-              <button class="btn btn-primary">Register</button>
-            </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
@@ -51,6 +54,35 @@
 </template>
 
 <script setup>
+const email = ref("");
+const password = ref("");
+const error = ref("");
+
+const { register } = useAuth();
+const { $toast } = useToast();
+
+async function handleRegister() {
+  try {
+    await register(email.value, password.value)
+      .then((data) => {
+        if (data.user) {
+          $toast.success(
+            "Your account has been registered. Navigating to login the page."
+          );
+          navigateTo("/login");
+        } else {
+          error.value = data;
+        }
+      })
+      .catch((err) => {
+        $toast.warning("Opps. Something went wrong. " + error);
+        error.value = err;
+      });
+  } catch (err) {
+    error.value = err;
+  }
+}
+
 definePageMeta({
   layout: false,
 });

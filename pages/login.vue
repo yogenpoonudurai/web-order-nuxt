@@ -16,13 +16,14 @@
           <h1 class="text-3xl font-bold mb-4">Welcome back!</h1>
         </div>
         <div class="card flex-shrink-0 shadow-2xl bg-base-100 max-w-md mx-auto">
-          <form @submit.prevent="login">
+          <form @submit.prevent="handleLogin">
             <div class="card-body">
               <div class="form-control">
                 <label class="label">
                   <span class="label-text">Email</span>
                 </label>
                 <input
+                  v-model="email"
                   type="email"
                   placeholder="email"
                   class="input input-bordered"
@@ -33,6 +34,7 @@
                   <span class="label-text">Password</span>
                 </label>
                 <input
+                  v-model="password"
                   type="text"
                   placeholder="password"
                   class="input input-bordered"
@@ -50,6 +52,9 @@
                   >Register</span
                 >
               </NuxtLink>
+              <div class="badge badge-error badge-lg text-xs" v-if="error">
+                {{ error }}
+              </div>
               <div class="form-control mt-6">
                 <button type="submit" class="btn btn-primary">Login</button>
               </div>
@@ -61,19 +66,45 @@
   </NuxtLayout>
 </template>
 
-<script setup>
-const { loginWithEmail } = useAuth();
+<script setup lang="ts">
+import { useAuthStore } from "~~/store/auth";
+
 const email = ref("");
 const password = ref("");
+const error = ref("");
 
-async function login() {
-  console.log("login");
+const { user } = useAuthStore();
+const { $toast } = useToast();
+
+onMounted(() => {
+  if (user.isAuthenticated) {
+    $toast.success("Detecting authenticated session. Navigating to dashboard");
+    navigateTo("/dashboard");
+  }
+});
+
+const { login } = useAuth();
+async function handleLogin() {
   try {
-    await loginWithEmail(email, password);
-  } catch (error) {}
+    error.value = "";
+    await login(email.value, password.value)
+      .then((data) => {
+        if (user.isAuthenticated) {
+          navigateTo("/dashboard");
+        } else {
+          error.value = data;
+        }
+      })
+      .catch((err) => {
+        error.value = err;
+      });
+  } catch (err) {
+    error.value = err;
+  }
 }
 
 definePageMeta({
   layout: false,
+  middleware: "auth",
 });
 </script>

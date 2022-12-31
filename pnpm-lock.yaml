@@ -13,6 +13,7 @@ specifiers:
   postcss: ^8.4.20
   remixicon: ^2.5.0
   tailwindcss: ^3.2.4
+  vue-toast-notification: ^3.0
 
 dependencies:
   '@pinia/nuxt': 0.4.6
@@ -23,6 +24,7 @@ dependencies:
   firebase-functions-test: 3.0.0_z67phc7gbk67bqr4jvlywhomta
   pinia: 2.0.28
   remixicon: 2.5.0
+  vue-toast-notification: 3.0.4
 
 devDependencies:
   autoprefixer: 10.4.13_postcss@8.4.20
@@ -6321,6 +6323,13 @@ packages:
       '@vue/devtools-api': 6.4.5
       vue: 3.2.45
     dev: true
+
+  /vue-toast-notification/3.0.4:
+    resolution: {integrity: sha512-rEhLtcKg8SVdBpdN7PrNst5nmY8dw0j3NkNImqurhlGurqR/QDKoou0t2PuCReEOCTKqHvfLCle2I3kwQWDWDQ==}
+    engines: {node: '>=12.15.0'}
+    peerDependencies:
+      vue: ^3.0
+    dev: false
 
   /vue/3.2.45:
     resolution: {integrity: sha512-9Nx/Mg2b2xWlXykmCwiTUCWHbWIj53bnkizBxKai1g61f2Xit700A1ljowpTIM11e3uipOeiPcSqnmBg6gyiaA==}

@@ -7,19 +7,18 @@ type Authenticated = {
 };
 
 export const useAuthStore = defineStore("auth", () => {
-  const isAuthenticated = ref<Authenticated>({
+  const user = ref<Authenticated>({
     user: null,
     isAuthenticated: false,
   });
-  const user = ref<User>();
-  function setAuthenticated(user: User, authenticated: boolean) {
-    isAuthenticated.value.user = user;
-    isAuthenticated.value.isAuthenticated = authenticated;
+
+  function setAuthenticated(data: Authenticated) {
+    user.value.user = data.user;
+    user.value.isAuthenticated = data.isAuthenticated;
   }
 
   return {
-    isAuthenticated,
-    setAuthenticated,
     user,
+    setAuthenticated,
   };
 });

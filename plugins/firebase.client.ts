@@ -1,17 +1,16 @@
 import {
-  FirebaseOptions,
-  initializeApp,
-  getApps,
   FirebaseApp,
+  FirebaseOptions,
+  getApps,
+  initializeApp,
 } from "firebase/app";
-import { getFirestore, Firestore } from "firebase/firestore";
+import { getFirestore } from "firebase/firestore";
 
 import "firebase/auth";
-import { getAuth, Auth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useAuthStore } from "~~/store/auth";
 
 export default defineNuxtPlugin((nuxtApp) => {
-  console.log("firebase App created");
   const config = useRuntimeConfig();
   const authStore = useAuthStore();
 
@@ -25,14 +24,16 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   if (!firebaseApp) {
     firebaseApp = initializeApp(firebaseConfig);
-    console.log("firebase app initialized");
   }
 
   const firestore = getFirestore(firebaseApp);
   const auth = getAuth(firebaseApp);
 
-  auth.onAuthStateChanged((user) => {
-    authStore.setAuthenticated(user?.uid ? true : false);
+  onAuthStateChanged(auth, (user) => {
+    authStore.setAuthenticated({
+      user,
+      isAuthenticated: user?.uid ? true : false,
+    });
   });
 
   nuxtApp.provide("firebaseAuth", auth);

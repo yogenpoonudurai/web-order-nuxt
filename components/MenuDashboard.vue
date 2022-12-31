@@ -1,9 +1,11 @@
 <template>
-  <div class="navbar bg-secondary">
+  <div class="navbar bg-accent px-10">
     <div class="flex-1">
-      <a class="btn btn-ghost normal-case text-xl">{{
-        runtimeConfig.public.brandName
-      }}</a>
+      <NuxtLink href="/">
+        <a class="btn btn-ghost normal-case text-xl">{{
+          runtimeConfig.public.brandName
+        }}</a>
+      </NuxtLink>
     </div>
     <div class="flex-none">
       <div class="dropdown dropdown-end">
@@ -56,7 +58,7 @@
             </a>
           </li>
           <li><a>Settings</a></li>
-          <li><a>Logout</a></li>
+          <li><a @click="logout">Logout</a></li>
         </ul>
       </div>
     </div>
@@ -65,4 +67,6 @@
 
 <script setup>
 const runtimeConfig = useRuntimeConfig();
+
+const { logout } = useAuth();
 </script>

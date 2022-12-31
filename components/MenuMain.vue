@@ -49,13 +49,19 @@
           <NuxtLink href="/products">Products</NuxtLink>
         </li>
         <li class="hover:text-primary">
-          <NuxtLink href="/login">Login</NuxtLink>
+          <NuxtLink v-if="user.isAuthenticated" href="/dashboard"
+            >Dashboard</NuxtLink
+          >
+          <NuxtLink v-else href="/login">Login</NuxtLink>
         </li>
       </ul>
     </div>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { useAuthStore } from "~~/store/auth";
 const runtimeConfig = useRuntimeConfig();
+
+const { user } = useAuthStore();
 </script>

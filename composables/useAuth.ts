@@ -1,24 +1,60 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { FirebaseError } from "firebase/app";
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
 import { useAuthStore } from "~~/store/auth";
+import getAuthErrorMessage from "~~/utils/firebaseAuthCode";
 
 export default function () {
   const { $firebaseAuth } = useNuxtApp();
   const { setAuthenticated, user } = useAuthStore();
-  async function loginWithEmail(email: string, password: string) {
-    await signInWithEmailAndPassword($firebaseAuth, email, password)
+  async function login(email: string, password: string) {
+    return await signInWithEmailAndPassword($firebaseAuth, email, password)
       .then((userCredential) => {
         if (userCredential.user) {
-          setAuthenticated(userCredential.user, true);
-          user;
-          return true;
+          setAuthenticated({
+            user: userCredential.user,
+            isAuthenticated: true,
+          });
+          return user;
         }
         return false;
       })
-      .catch((err: Error) => {
-        console.log(err);
-        return err.message;
+      .catch((error: FirebaseError) => {
+        const errorCode = error.code;
+        return getAuthErrorMessage(errorCode);
       });
   }
 
-  return { loginWithEmail };
+  async function register(email: string, password: string) {
+    return await createUserWithEmailAndPassword($firebaseAuth, email, password)
+      .then((user) => {
+        if (user.user) {
+          return user;
+        }
+        return false;
+      })
+      .catch((error: FirebaseError) => {
+        return getAuthErrorMessage(error.code);
+      });
+  }
+
+  async function logout() {
+    console.log("siging out");
+    return await signOut($firebaseAuth)
+      .then((data) => {
+        setAuthenticated({
+          user: null,
+          isAuthenticated: false,
+        });
+        navigateTo("/");
+      })
+      .catch((error: FirebaseError) => {
+        return getAuthErrorMessage(error.code);
+      });
+  }
+
+  return { login, register, logout };
 }
