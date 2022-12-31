@@ -16,40 +16,45 @@
           <h1 class="text-3xl font-bold mb-4">Welcome back!</h1>
         </div>
         <div class="card flex-shrink-0 shadow-2xl bg-base-100 max-w-md mx-auto">
-          <div class="card-body">
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">Email</span>
-              </label>
-              <input
-                type="text"
-                placeholder="email"
-                class="input input-bordered"
-              />
-            </div>
-            <div class="form-control">
-              <label class="label">
-                <span class="label-text">Password</span>
-              </label>
-              <input
-                type="text"
-                placeholder="password"
-                class="input input-bordered"
-              />
-              <label class="label">
-                <a href="#" class="label-text-alt link link-hover"
-                  >Forgot password?</a
+          <form @submit.prevent="login">
+            <div class="card-body">
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Email</span>
+                </label>
+                <input
+                  type="email"
+                  placeholder="email"
+                  class="input input-bordered"
+                />
+              </div>
+              <div class="form-control">
+                <label class="label">
+                  <span class="label-text">Password</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="password"
+                  class="input input-bordered"
+                />
+                <label class="label">
+                  <a href="#" class="label-text-alt link link-hover"
+                    >Forgot password?</a
+                  >
+                </label>
+              </div>
+
+              <NuxtLink href="/register">
+                <span>Don't have an account? </span>
+                <span class="text-center hover:text-primary link"
+                  >Register</span
                 >
-              </label>
+              </NuxtLink>
+              <div class="form-control mt-6">
+                <button type="submit" class="btn btn-primary">Login</button>
+              </div>
             </div>
-            <NuxtLink href="/register">
-              <span>Don't have an account? </span>
-              <span class="text-center hover:text-primary link">Register</span>
-            </NuxtLink>
-            <div class="form-control mt-6">
-              <button class="btn btn-primary">Login</button>
-            </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
@@ -57,6 +62,17 @@
 </template>
 
 <script setup>
+const { loginWithEmail } = useAuth();
+const email = ref("");
+const password = ref("");
+
+async function login() {
+  console.log("login");
+  try {
+    await loginWithEmail(email, password);
+  } catch (error) {}
+}
+
 definePageMeta({
   layout: false,
 });

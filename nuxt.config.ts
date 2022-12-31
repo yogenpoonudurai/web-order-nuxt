@@ -2,7 +2,10 @@
 export default defineNuxtConfig({
   nitro: {
     preset: "firebase",
+    minify: true,
+    compressPublicAssets: true,
   },
+  build: {},
   runtimeConfig: {
     public: {
       brandName: "Ordo",
@@ -23,4 +26,12 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  modules: [
+    [
+      "@pinia/nuxt",
+      {
+        autoImports: ["defineStore", ["defineStore", "definePiniaStore"]],
+      },
+    ],
+  ],
 });
