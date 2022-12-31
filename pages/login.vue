@@ -67,6 +67,7 @@
 </template>
 
 <script setup lang="ts">
+import { FirebaseError } from "firebase/app";
 import { useAuthStore } from "~~/store/auth";
 
 const email = ref("");
@@ -92,14 +93,14 @@ async function handleLogin() {
         if (user.isAuthenticated) {
           navigateTo("/dashboard");
         } else {
-          error.value = data;
+          error.value = data.toString();
         }
       })
       .catch((err) => {
         error.value = err;
       });
-  } catch (err) {
-    error.value = err;
+  } catch (err: unknown) {
+    error.value = err as string;
   }
 }
 
