@@ -8,4 +8,4 @@ node_modules
 dist
 service-account.json
 .DS_Store
-.DS_Store
+.vercel
