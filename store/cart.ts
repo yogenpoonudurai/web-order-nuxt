@@ -1,5 +1,4 @@
 import { CartItem } from "~~/types/cart.type";
-import { Product } from "~~/types/product.type";
 
 export const useCartStore = defineStore("cart", () => {
   const cart = ref<CartItem[]>([]);
@@ -18,6 +17,10 @@ export const useCartStore = defineStore("cart", () => {
     return cart.value[cart.value.length - 1];
   }
 
+  async function removeProduct(cartItem: CartItem) {
+    return cart.value.filter((v) => v.id !== cartItem.id);
+  }
+
   function getTotal() {
     return cart.value.reduce((sum, v) => sum + v.price * v.quantity, 0);
   }
@@ -26,5 +29,6 @@ export const useCartStore = defineStore("cart", () => {
     cart,
     addProduct,
     getTotal,
+    removeProduct,
   };
 });
