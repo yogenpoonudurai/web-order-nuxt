@@ -1,13 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   nitro: {
-    preset: "vercel", //firebase
+    preset: "firebase", //firebase
     minify: true,
     compressPublicAssets: true,
   },
-  build: {
-    transpile: ["vue-toastification"],
-  },
+  build: {},
   runtimeConfig: {
     public: {
       brandName: "Ordo",

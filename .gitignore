@@ -9,3 +9,4 @@ dist
 service-account.json
 .DS_Store
 .vercel
+.firebase/hosting.*

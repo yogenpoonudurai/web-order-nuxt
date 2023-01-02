@@ -6,7 +6,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "deploy": "npm run build && cd .output/server && rm -rf node_modules && npm i && cd ../../ && firebase login && firebase deploy",
+    "deploy": "NITRO_PRESET=firebase npm run build && cd .output/server && rm -rf node_modules && npm i && cd ../../ && firebase login && firebase deploy",
     "deploy2": "NITRO_PRESET=firebase pnpm build && firebase deploy"
   },
   "devDependencies": {

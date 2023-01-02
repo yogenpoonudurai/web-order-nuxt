@@ -8,6 +8,7 @@
   },
   "functions": [
     {
+      "runtime": "nodejs16",
       "source": ".output/server",
       "ignore": [
         "node_modules",
