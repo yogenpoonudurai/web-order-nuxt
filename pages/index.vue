@@ -145,6 +145,7 @@
 
   <section
     class="my-20 hero-content mx-auto flex flex-col text-center lg:text-left"
+    id="mostPopular"
   >
     <p class="mb-4">Our Benefit</p>
     <div class="text-5xl mb-10">Most Popular Product</div>

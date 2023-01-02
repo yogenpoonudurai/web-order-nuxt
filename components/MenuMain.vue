@@ -49,7 +49,10 @@
           <NuxtLink href="/products">Products</NuxtLink>
         </li>
         <li class="hover:text-primary">
-          <NuxtLink v-if="user.isAuthenticated" href="/cart">Cart</NuxtLink>
+          <NuxtLink v-if="user.isAuthenticated" href="/cart"
+            >Cart
+            <span class="badge badge-sm indicator-item">{{ cart.length }}</span>
+          </NuxtLink>
           <NuxtLink v-else href="/login">Login</NuxtLink>
         </li>
       </ul>
@@ -59,7 +62,9 @@
 
 <script setup lang="ts">
 import { useAuthStore } from "~~/store/auth";
+import { useCartStore } from "~~/store/cart";
 const runtimeConfig = useRuntimeConfig();
 
 const { user } = useAuthStore();
+const { cart } = useCartStore();
 </script>

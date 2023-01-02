@@ -1,21 +1,21 @@
+import { CartItem } from "~~/types/cart.type";
 import { Product } from "~~/types/product.type";
-
-type CartItem = Product & { quantity: number };
 
 export const useCartStore = defineStore("cart", () => {
   const cart = ref<CartItem[]>([]);
 
-  function addProduct(cartItem: CartItem) {
+  async function addProduct(cartItem: CartItem) {
     const cartIndex = cart.value.findIndex((v) => v.id === cartItem.id);
     const item = cart.value[cartIndex];
 
     if (cartIndex > -1) {
       item.quantity++;
       cart.value[cartIndex] = item;
-      return;
+      return cart.value[cartIndex];
     }
 
     cart.value.push(cartItem);
+    return cart.value[cart.value.length - 1];
   }
 
   function getTotal() {
