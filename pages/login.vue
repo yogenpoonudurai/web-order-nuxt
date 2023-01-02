@@ -20,6 +20,17 @@
             <div class="card-body">
               <div class="form-control">
                 <label class="label">
+                  <span class="label-text">Display name</span>
+                </label>
+                <input
+                  v-model="displayName"
+                  type="displayName"
+                  placeholder="display name"
+                  class="input input-bordered"
+                />
+              </div>
+              <div class="form-control">
+                <label class="label">
                   <span class="label-text">Email</span>
                 </label>
                 <input
@@ -39,11 +50,11 @@
                   placeholder="password"
                   class="input input-bordered"
                 />
-                <label class="label">
+                <NuxtLink href="/forgotpassword">
                   <a href="#" class="label-text-alt link link-hover"
                     >Forgot password?</a
                   >
-                </label>
+                </NuxtLink>
               </div>
 
               <NuxtLink href="/register">
@@ -67,11 +78,11 @@
 </template>
 
 <script setup lang="ts">
-import { FirebaseError } from "firebase/app";
 import { useAuthStore } from "~~/store/auth";
 
 const email = ref("");
 const password = ref("");
+const displayName = ref("");
 const error = ref("");
 
 const { user } = useAuthStore();

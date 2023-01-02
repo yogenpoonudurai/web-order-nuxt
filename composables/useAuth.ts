@@ -3,6 +3,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import { useAuthStore } from "~~/store/auth";
 import getAuthErrorMessage from "~~/utils/firebaseAuthCode";
@@ -56,5 +57,17 @@ export default function () {
       });
   }
 
-  return { login, register, logout };
+  async function resetPassword(email: string) {
+    return await sendPasswordResetEmail($firebaseAuth, email)
+      .then((data) => {
+        console.log("firebase data", data);
+        return data;
+      })
+      .catch((error: FirebaseError) => {
+        console.log("error", error.code);
+        return getAuthErrorMessage(error.code);
+      });
+  }
+
+  return { login, register, logout, resetPassword };
 }
