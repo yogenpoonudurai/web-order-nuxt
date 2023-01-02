@@ -20,17 +20,6 @@
             <div class="card-body">
               <div class="form-control">
                 <label class="label">
-                  <span class="label-text">Display name</span>
-                </label>
-                <input
-                  v-model="displayName"
-                  type="displayName"
-                  placeholder="display name"
-                  class="input input-bordered"
-                />
-              </div>
-              <div class="form-control">
-                <label class="label">
                   <span class="label-text">Email</span>
                 </label>
                 <input
@@ -91,7 +80,7 @@ const { $toast } = useToast();
 onMounted(() => {
   if (user.isAuthenticated) {
     $toast.success("Detecting authenticated session. Navigating to dashboard");
-    navigateTo("/dashboard");
+    navigateTo("/cart");
   }
 });
 
@@ -102,7 +91,7 @@ async function handleLogin() {
     await login(email.value, password.value)
       .then((data) => {
         if (user.isAuthenticated) {
-          navigateTo("/dashboard");
+          navigateTo("/cart");
         } else {
           error.value = data.toString();
         }

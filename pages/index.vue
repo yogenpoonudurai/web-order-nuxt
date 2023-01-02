@@ -1,5 +1,5 @@
 <template>
-  <div class="hero min-h-screen">
+  <div class="hero font-body">
     <div class="hero-content flex-col lg:flex-row-reverse lg:justify-between">
       <div class="lg:relative lg:w-1/2">
         <img
@@ -21,7 +21,7 @@
         <h1 class="text-5xl font-bold max-w-md">
           We're Serious For Good Taste.
         </h1>
-        <p class="py-6 w-1/2">
+        <p class="py-6 lg:w-1/2">
           We strive to provide a space where guests can connect with themselves
           and explore their full potential, offering a safe place.
         </p>

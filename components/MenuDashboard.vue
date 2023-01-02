@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar bg-accent px-10">
+  <div class="navbar bg-secondary text-white px-10">
     <div class="flex-1">
       <NuxtLink href="/">
         <a class="btn btn-ghost normal-case text-xl">{{
@@ -25,16 +25,16 @@
                 d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
               />
             </svg>
-            <span class="badge badge-sm indicator-item">8</span>
+            <span class="badge badge-sm indicator-item">{{ cart.length }}</span>
           </div>
         </label>
         <div
           tabindex="0"
-          class="mt-3 card card-compact dropdown-content w-52 bg-base-100 shadow"
+          class="mt-3 card card-compact dropdown-content w-52 bg-primary shadow"
         >
           <div class="card-body">
-            <span class="font-bold text-lg">8 Items</span>
-            <span class="text-info">Subtotal: $999</span>
+            <span class="font-bold text-lg">{{ cart.length }} Items</span>
+            <span class="text-info">Subtotal: $ {{ getTotal() }}</span>
             <div class="card-actions">
               <button class="btn btn-primary btn-block">View cart</button>
             </div>
@@ -49,7 +49,7 @@
         </label>
         <ul
           tabindex="0"
-          class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+          class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-primary rounded-box w-52"
         >
           <li>
             <a class="justify-between">
@@ -66,7 +66,11 @@
 </template>
 
 <script setup>
+import { useCartStore } from "~~/store/cart";
+
 const runtimeConfig = useRuntimeConfig();
+
+const { cart, getTotal } = useCartStore();
 
 const { logout } = useAuth();
 </script>

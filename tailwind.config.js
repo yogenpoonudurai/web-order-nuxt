@@ -1,4 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   content: [
     "./components/**/*.{js,vue,ts}",
@@ -9,7 +12,11 @@ module.exports = {
     "./app.vue",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        body: ["Poppins", ...defaultTheme.fontFamily.sans],
+      },
+    },
   },
   plugins: [require("daisyui")],
   daisyui: {
@@ -17,8 +24,8 @@ module.exports = {
       {
         mytheme: {
           primary: "#3D387C",
-          secondary: "#ec4899",
-          accent: "#fdba74",
+          secondary: "#BFDBF7",
+          accent: "#BFDBF7",
           neutral: "#191A3E",
           "base-100": "#FFFFFF",
           info: "#7dd3fc",

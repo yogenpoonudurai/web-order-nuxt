@@ -49,9 +49,7 @@
           <NuxtLink href="/products">Products</NuxtLink>
         </li>
         <li class="hover:text-primary">
-          <NuxtLink v-if="user.isAuthenticated" href="/dashboard"
-            >Dashboard</NuxtLink
-          >
+          <NuxtLink v-if="user.isAuthenticated" href="/cart">Cart</NuxtLink>
           <NuxtLink v-else href="/login">Login</NuxtLink>
         </li>
       </ul>
