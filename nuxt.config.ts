@@ -5,7 +5,9 @@ export default defineNuxtConfig({
     minify: true,
     compressPublicAssets: true,
   },
-  build: {},
+  build: {
+    transpile: ["vue-toastification"],
+  },
   runtimeConfig: {
     public: {
       brandName: "Ordo",
